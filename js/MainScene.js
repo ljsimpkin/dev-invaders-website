@@ -425,7 +425,7 @@ export default class MainScene extends Phaser.Scene {
       this.gameOver()
     }
 
-    // aactivate enemies
+    // activate enemies
     if (
       this.time.now > this.enemyTime &&
       this.time.now < this.enemyTime + this.phaseTime
