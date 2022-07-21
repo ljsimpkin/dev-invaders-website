@@ -18,7 +18,7 @@ const config = {
     },
   },
   pixelArt: true,
-  scene: [MainScene],
+  scene: [Title, MainScene, GameOver,Victory],
   // scene: [ParallaxScene],
 }
 
