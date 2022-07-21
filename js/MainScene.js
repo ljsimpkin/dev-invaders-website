@@ -260,7 +260,7 @@ export default class MainScene extends Phaser.Scene {
     var jump = this.add.rectangle(0, 0, 1500, 2000, 0x6666ff).setInteractive();
     jump.setAlpha(0.01)
     jump.on('pointerdown', () => {
-      this.player.setVelocityY(this.player.body.velocity.y - 300)
+      this.player.setVelocityY(this.player.body.velocity.y - 200)
       console.log('clocked')
     })
 
