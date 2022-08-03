@@ -117,7 +117,9 @@ export default class GameOver extends Phaser.Scene {
 
     this.add.sprite(950, 350, 'lessons').setScale(0.2).setInteractive()
 
-    no.on('pointerdown', () => this.scene.start('Title'))
+    no.on('pointerdown', () => {
+    this.scene.start('Title')
+  })
 
     // restart.on('pointerover', () => restart.setTint(0xff0000a160))
   }

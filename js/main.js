@@ -8,6 +8,7 @@ const config = {
   type: Phaser.AUTO,
   width: 1920,
   height: 800,
+  zoom: screen.width / (1920 + 30),
   backgroundColor: '',
   parent: 'dev-invaders',
   physics: {
@@ -18,7 +19,7 @@ const config = {
     },
   },
   pixelArt: true,
-  scene: [Title, MainScene, GameOver,Victory],
+  scene: [Title, MainScene, GameOver, Victory],
   // scene: [ParallaxScene],
 }
 

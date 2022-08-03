@@ -61,7 +61,9 @@ export default class MainScene extends Phaser.Scene {
     this.load.audio('enemy-explosion', 'assets/sound/short-explosion.wav')
   }
 
-  create() {
+  create(data) {
+    this.gameOverSwitch = true
+    console.log(data)
     // new TileSprite(scene, x, y, width, height, textureKey [, frameKey])
 
     //background music
@@ -257,14 +259,14 @@ export default class MainScene extends Phaser.Scene {
     this.laserSound = this.sound.add('laserSound')
     this.enemyExplosion = this.sound.add('enemy-explosion')
 
-    var jump = this.add.rectangle(0, 0, 1500, 2000, 0x6666ff).setInteractive();
+    const jump = this.add.rectangle(0, 0, 1500, 2000, 0x6666ff).setInteractive();
     jump.setAlpha(0.01)
     jump.on('pointerdown', () => {
       this.player.setVelocityY(this.player.body.velocity.y - 200)
       console.log('clocked')
     })
 
-    var shoot = this.add.rectangle(1900, 0, 1500, 2000, 0xff0000).setInteractive();
+    const shoot = this.add.rectangle(1900, 0, 1500, 2000, 0xff0000).setInteractive();
     shoot.setAlpha(0.01)
     shoot.on('pointerdown', () => {
       this.fireBullet()
@@ -434,10 +436,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     // if the player leaves the screen game over
-    if (!this.cameras.main.worldView.contains(this.player.x, this.player.y)) {
+    if ((this.gameOverSwitch === 'newGame' || this.gameOverSwitch === {})&& !this.cameras.main.worldView.contains(this.player.x, this.player.y)) {
       // this.scene.launch overlays scenes
       this.playerExplosion.play()
-      this.gameOver()
+      this.scene.restart('newGame')
+      this.gameOverSwitch = false
+      // this.gameOver()
+      
     }
 
     // activate enemies
@@ -454,4 +459,22 @@ export default class MainScene extends Phaser.Scene {
       }
     }
   }
+}
+
+const config = {
+  type: Phaser.AUTO,
+  width: 1920,
+  height: 800,
+  backgroundColor: '',
+  parent: 'dev-invaders',
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 330 },
+      debug: false,
+    },
+  },
+  pixelArt: true,
+  scene: [MainScene],
+  // scene: [ParallaxScene],
 }

@@ -92,7 +92,13 @@ export default class Title extends Phaser.Scene {
       .setScale(0.3)
       .setInteractive()
 
-    start.on('pointerdown', () => this.scene.start('MainScene'))
+    start.on('pointerdown', () => {
+      
+      // var theOtherScene = this.scene.get('MainScene');
+      // theOtherScene.scene.restart()
+      // this.scene.restart('MainScene')
+      this.scene.start('MainScene')
+    })
 
     // start.on('pointerover', () => start.setTint(0xff0000a160))
     var text = this.add
